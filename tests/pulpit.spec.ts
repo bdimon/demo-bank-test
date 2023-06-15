@@ -5,6 +5,11 @@ test.describe('Pulpit tests', () => {
     const userId = 'test1234';
     const userPassword = 'test1234';
     const expectedUsername = 'Jan Demobankowy';
+    
+    const receiverId = '2';
+    const transferAmount = '120';
+    const transferTitle = 'Cashback';
+    const expectedTransferReceiver = 'Chuck Demobankowy';
       
     await page.goto(url);
     await page.getByTestId('login-input').fill(userId);
@@ -13,14 +18,14 @@ test.describe('Pulpit tests', () => {
 
     await expect(page.getByTestId('user-name')).toHaveText(expectedUsername);
 
-    await page.goto('https://demo-bank.vercel.app/pulpit.html');
-    await page.locator('#widget_1_transfer_receiver').selectOption('2');
-    await page.locator('#widget_1_transfer_amount').fill('120');
-    await page.locator('#widget_1_transfer_title').fill('Cashback');
+    // await page.goto('https://demo-bank.vercel.app/pulpit.html');
+    await page.locator('#widget_1_transfer_receiver').selectOption(receiverId);
+    await page.locator('#widget_1_transfer_amount').fill(transferAmount);
+    await page.locator('#widget_1_transfer_title').fill(transferTitle);
     await page.locator('#execute_btn').click();
     await page.getByTestId('close-button').click();
 
-    await expect(page.locator('#show_messages')).toHaveText('Przelew wykonany! Chuck Demobankowy - 120,00PLN - Cashback' );
+    await expect(page.locator('#show_messages')).toHaveText(`Przelew wykonany! ${expectedTransferReceiver} - ${transferAmount},00PLN - ${transferTitle}` );
   });
 
   test('successful mobile top-up', async ({ page }) => {
