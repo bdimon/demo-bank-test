@@ -5,7 +5,7 @@ test.describe('Tests for login', () => {
     const userId = 'test1234';
     const userPassword = 'test1234';
     const expectedUsername = 'Jan Demobankowy';
-      
+
     await page.goto(url);
     await page.getByTestId('login-input').fill(userId);
     await page.getByTestId('password-input').fill(userPassword);
