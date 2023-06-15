@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 test.describe('Tests for login', () => {
-  test.only('login with correct credentials', async ({ page }) => {
+  test('login with correct credentials', async ({ page }) => {
     const url = 'https://demo-bank.vercel.app/index.html';
     const userId = 'test1234';
     const userPassword = 'test1234';
