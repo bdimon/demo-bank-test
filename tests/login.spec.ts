@@ -1,12 +1,16 @@
 import { test, expect } from '@playwright/test';
 test.describe('Tests for login', () => {
+
+  test.beforeEach(async ({ page }) => {
+    const url = 'https://demo-bank.vercel.app/';
+    await page.goto(url);
+  });
+
   test('login with correct credentials', async ({ page }) => {
-    const url = 'https://demo-bank.vercel.app/index.html';
     const userId = 'test1234';
     const userPassword = 'test1234';
     const expectedUsername = 'Jan Demobankowy';
 
-    await page.goto(url);
     await page.getByTestId('login-input').fill(userId);
     await page.getByTestId('password-input').fill(userPassword);
     await page.getByTestId('login-button').click();
@@ -15,7 +19,6 @@ test.describe('Tests for login', () => {
   });
 
   test('unsuccessful login with too short username', async ({ page }) => {
-    await page.goto('https://demo-bank.vercel.app/');
     await page.getByTestId('login-input').fill('tester');
     await page.getByTestId('password-input').click();
 
@@ -25,7 +28,6 @@ test.describe('Tests for login', () => {
   });
 
   test('unsuccessful login with too short password', async ({ page }) => {
-    await page.goto('https://demo-bank.vercel.app/');
     await page.getByTestId('login-input').fill('testerLO');
     await page.getByTestId('password-input').fill('1234');
     await page.getByTestId('password-input').blur();
