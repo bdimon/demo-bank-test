@@ -5,7 +5,7 @@ test.describe('Pulpit tests', () => {
 
     const expectedUsername = 'Jan Demobankowy';
 
-    await page.goto('https://demo-bank.vercel.app/');
+    await page.goto('/');
     await page.getByTestId('login-input').fill('test1234');
     await page.getByTestId('password-input').fill('test1234');
     await page.getByTestId('login-button').click();

@@ -3,7 +3,7 @@ test.describe('Tests for login', () => {
 
   test.beforeEach(async ({ page }) => {
     const url = 'https://demo-bank.vercel.app/';
-    await page.goto(url);
+    await page.goto('/');
   });
 
   test('login with correct credentials', async ({ page }) => {
