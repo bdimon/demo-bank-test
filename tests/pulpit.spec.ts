@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { loginData } from '../test-data/login.data';
 test.describe('Pulpit tests', () => {
 
   test.beforeEach(async ({ page }) => {
@@ -6,8 +7,8 @@ test.describe('Pulpit tests', () => {
     const expectedUsername = 'Jan Demobankowy';
 
     await page.goto('/');
-    await page.getByTestId('login-input').fill('test1234');
-    await page.getByTestId('password-input').fill('test1234');
+    await page.getByTestId('login-input').fill(loginData.userId);
+    await page.getByTestId('password-input').fill(loginData.userPassword);
     await page.getByTestId('login-button').click();
 
     await expect(page.getByTestId('user-name')).toHaveText(expectedUsername);
