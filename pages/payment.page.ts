@@ -3,6 +3,7 @@ import { Page } from '@playwright/test';
 export class PaymentPage {
     constructor(private page: Page) {}
   
+    paymentStart = this.page.getByRole('link', { name: 'płatności' });
     paymentReceiver = this.page.getByTestId('transfer_receiver');
     paymentAddress = this.page.getByTestId('form_account_to');
     paymentAmount = this.page.getByTestId('form_amount');

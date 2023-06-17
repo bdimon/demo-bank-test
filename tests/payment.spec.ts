@@ -22,6 +22,7 @@ test.describe('Payment tests', () => {
     const expectedMessage = `Przelew wykonany! ${transferAmount},00PLN dla ${transferReceiver}`;
     // Act
     const paymentPage = new PaymentPage(page);
+    await paymentPage.paymentStart.click();
     await paymentPage.paymentReceiver.fill(transferReceiver);
     await paymentPage.paymentAddress.fill(transferAccount);
     await paymentPage.paymentAmount.fill(transferAmount);

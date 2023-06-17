@@ -28,9 +28,6 @@ test.describe('Tests for login', () => {
     await loginPage.loginInput.fill(loginData.incorrectUserId);
     await loginPage.passwordInput.fill(loginData.userPassword);
 
-    // await page.getByTestId('login-input').fill('tester');
-    // await page.getByTestId('password-input').click();
-
     await expect(loginPage.loginError).toHaveText(
       'identyfikator ma min. 8 znaków'
     );
@@ -46,12 +43,6 @@ test.describe('Tests for login', () => {
     await expect(loginPage.passwordError).toHaveText(
       'hasło ma min. 8 znaków'
 
-
-    // await page.getByTestId('login-input').fill('testerLO');
-    // await page.getByTestId('password-input').fill(incorrectUserPassword);
-    // await page.getByTestId('password-input');
-
-    
     );
   });
 });
