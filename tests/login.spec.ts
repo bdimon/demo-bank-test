@@ -3,9 +3,10 @@ import { loginData } from '../test-data/login.data';
 import { LoginPage } from '../pages/login.page';
 
 test.describe('Tests for login', () => {
-
+let loginPage: LoginPage;
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
+    loginPage = new LoginPage(page);
   });
 
   test('login with correct credentials', async ({ page }) => {
@@ -13,7 +14,7 @@ test.describe('Tests for login', () => {
     const userPassword = loginData.userPassword;
     const expectedUsername = 'Jan Demobankowy';
 
-    const loginPage = new LoginPage(page);
+    // const loginPage = new LoginPage(page);
     await loginPage.loginInput.fill(userId);
     await loginPage.passwordInput.fill(userPassword);
     await loginPage.loginButton.click();
@@ -24,7 +25,7 @@ test.describe('Tests for login', () => {
 
   test('unsuccessful login with too short username', async ({ page }) => {
 
-    const loginPage = new LoginPage(page);
+    // const loginPage = new LoginPage(page);
     await loginPage.loginInput.fill(loginData.incorrectUserId);
     await loginPage.passwordInput.fill(loginData.userPassword);
 
@@ -36,7 +37,7 @@ test.describe('Tests for login', () => {
   test('unsuccessful login with too short password', async ({ page }) => {
 
 
-    const loginPage = new LoginPage(page);
+    // const loginPage = new LoginPage(page);
     await loginPage.loginInput.fill(loginData.userId);
     await loginPage.passwordInput.fill(loginData.incorrectUserPassword);
     await loginPage.passwordInput.blur();
