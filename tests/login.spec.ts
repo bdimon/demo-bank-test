@@ -14,9 +14,6 @@ test.describe('Tests for login', () => {
     const userPassword = loginData.userPassword;
     const expectedUsername = 'Jan Demobankowy';
 
-    // await page.getByTestId('login-input').fill(userId);
-    // await page.getByTestId('password-input').fill(userPassword);
-    // await page.getByTestId('login-button').click();
     const loginPage = new LoginPage(page);
     await loginPage.loginInput.fill(userId);
     await loginPage.passwordInput.fill(userPassword);
