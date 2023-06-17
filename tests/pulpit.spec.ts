@@ -51,8 +51,6 @@ test.describe('Pulpit tests', () => {
 
     const topUpReceiver = '500 xxx xxx';
     const topUpAmount = '50';
-    const initialBalance = await page.locator('#money_value').innerText();
-    const expectedBalance = Number(initialBalance) - Number(topUpAmount);
     const expectedMessage = `Doładowanie wykonane! ${topUpAmount},00PLN na numer ${topUpReceiver}`;
 
     // Act
