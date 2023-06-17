@@ -5,7 +5,6 @@ import { LoginPage } from '../pages/login.page';
 test.describe('Tests for login', () => {
 
   test.beforeEach(async ({ page }) => {
-    const url = 'https://demo-bank.vercel.app/';
     await page.goto('/');
   });
 
@@ -19,7 +18,8 @@ test.describe('Tests for login', () => {
     await loginPage.passwordInput.fill(userPassword);
     await loginPage.loginButton.click();
 
-    await expect(page.getByTestId('user-name')).toHaveText(expectedUsername);
+    await expect(loginPage.loginResult).toHaveText(expectedUsername);
+
   });
 
   test('unsuccessful login with too short username', async ({ page }) => {
