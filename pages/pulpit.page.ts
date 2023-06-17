@@ -14,7 +14,7 @@ export class PulpitPage {
 
     topUpReceiver = this.page.locator('#widget_1_topup_receiver');
     topUpAmount = this.page.locator('#widget_1_topup_amount');
-    topUpAgreement = this.page.locator('#widget_1_topup_agreement span');
+    topUpAgreement = this.page.locator('#uniform-widget_1_topup_agreement span');
     topUpTitle = this.page.getByRole('button', { name: 'doładuj telefon' });
     actionEnd = this.page.getByTestId('close-button');
 
