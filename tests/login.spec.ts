@@ -26,21 +26,35 @@ test.describe('Tests for login', () => {
   });
 
   test('unsuccessful login with too short username', async ({ page }) => {
-    await page.getByTestId('login-input').fill('tester');
-    await page.getByTestId('password-input').click();
 
-    await expect(page.getByTestId('error-login-id')).toHaveText(
+    const loginPage = new LoginPage(page);
+    await loginPage.loginInput.fill(loginData.incorrectUserId);
+    await loginPage.passwordInput.fill(loginData.userPassword);
+
+    // await page.getByTestId('login-input').fill('tester');
+    // await page.getByTestId('password-input').click();
+
+    await expect(loginPage.loginError).toHaveText(
       'identyfikator ma min. 8 znaków'
     );
   });
 
   test('unsuccessful login with too short password', async ({ page }) => {
-    await page.getByTestId('login-input').fill('testerLO');
-    await page.getByTestId('password-input').fill('1234');
-    await page.getByTestId('password-input').blur();
 
-    await expect(page.getByTestId('error-login-password')).toHaveText(
+
+    const loginPage = new LoginPage(page);
+    await loginPage.loginInput.fill(loginData.userId);
+    await loginPage.passwordInput.fill(loginData.incorrectUserPassword);
+    await loginPage.passwordInput.blur();
+    await expect(loginPage.passwordError).toHaveText(
       'hasło ma min. 8 znaków'
+
+
+    // await page.getByTestId('login-input').fill('testerLO');
+    // await page.getByTestId('password-input').fill(incorrectUserPassword);
+    // await page.getByTestId('password-input');
+
+    
     );
   });
 });
